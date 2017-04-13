@@ -4,8 +4,10 @@ class UsersController < ApplicationController
   end
 
   def index
-  	@user = current_user
   	@users = User.where.not(id: current_user.id)
+    #友人をサーチする
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true)
   end
 
   def edit
