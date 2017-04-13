@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     #友人をサーチする
     @q = User.ransack(params[:q])
     @users = @q.result(distinct: true)
+    @user = @q.result(distinct: true).first
   end
 
   def edit

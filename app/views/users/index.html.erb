@@ -29,5 +29,18 @@
 
   <% end %>
 </div>
-<p><%= @user %></p>
+<%= @user.name %>
+
+  <!-- IDでサーチする -->
+<div>
+  <%= search_form_for @q, url: user_path(@user.id) do |f| %>
+
+    <%= f.label :line_id_eq %>
+    <%= f.search_field :line_id_eq %>
+
+    <%= f.submit %>
+
+  <% end %>
+</div>
+
 
