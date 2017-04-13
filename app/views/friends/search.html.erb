@@ -1,0 +1,10 @@
+<div>
+  <%= search_form_for @q, url: user_path(@user.id) do |f| %>
+
+    <%= f.label :line_id_cont %>
+    <%= f.search_field :line_id_cont %>
+
+    <%= f.submit %>
+
+  <% end %>
+</div>

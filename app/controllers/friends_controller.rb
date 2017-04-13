@@ -5,4 +5,10 @@ class FriendsController < ApplicationController
 		redirect_to user
 	end
 
+	def search
+    @q = User.ransack(params[:q])
+    @user = @q.result(distinct: true).last
+
+	end
+
 end
