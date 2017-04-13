@@ -1,0 +1,12 @@
+
+<h2><%= @user.email %></h2>
+
+<%= form_for (@user) do |f| %>
+	
+	<div class="field">
+    <%= f.label :名前 %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+
+<% end %>
