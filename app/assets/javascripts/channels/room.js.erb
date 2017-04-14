@@ -1,0 +1,31 @@
+$(document).on('turbolinks:load', function() {
+  submitNewMessage();
+});
+
+<% Room.all.each do |room| %>  
+
+  App['room' + <%=room.id%>] = App.cable.subscriptions.create({channel: 'RoomChannel', room: <%=room.id%>}, {  
+  received: function(data) {
+   $("[data-chatroom='" + this.roomid + "']").removeClass('hidden')
+    return $("[data-chatroom='" + this.roomid + "']").append(data.message);
+  },
+
+  setRoomid: function(roomid) {
+    this.roomid = roomid
+  }
+});
+
+<% end %>
+
+function submitNewMessage(){
+  $('input#message_content').keydown(function(event) {
+    if (event.keyCode == 13) {
+        var msg = event.target.value
+        var roomid = $("[data-room]").data().room
+        App['room' + roomid].setRoomid(roomid)
+        App['room' + roomid].send({message: msg, room_id: roomid})
+        $('[data-input="message"]').val(" ")
+        return false;
+     }
+  });
+}
