@@ -1,6 +1,5 @@
 class RoomChannel < ApplicationCable::Channel
 	def subscribed
-		stop_all_streams
     stream_from "room-#{params['room']}:room"
   end
 
@@ -10,6 +9,6 @@ class RoomChannel < ApplicationCable::Channel
   end
 
   def receive(data)
-    Message.create(user: current_user, content: data["message"], room_id: data["room_id"])
+    Message.create!(user: current_user, content: data["message"], room_id: data["room_id"])
   end
 end
