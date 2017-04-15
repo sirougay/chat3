@@ -1,6 +1,8 @@
 class RoomChannel < ApplicationCable::Channel
-	def subscribed
-    stream_from "room-#{params['room']}:room"
+  def subscribed
+    Room.all.each do |room|
+      stream_from "room:#{room.id}"
+    end
   end
 
 
@@ -8,7 +10,7 @@ class RoomChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 
-  def receive(data)
-    Message.create!(user: current_user, content: data["message"], room_id: data["room_id"])
+  def send_message(data)
+    Message.create!(user: current_user, content: data["content"], room_id: data["room_id"])
   end
 end
