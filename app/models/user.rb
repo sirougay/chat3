@@ -7,12 +7,12 @@ class User < ApplicationRecord
   					foreign_key: "follower_id",
   					dependent: :destroy
   has_many :passive_friends, class_name: "Friend",
-  					foreign_key: "follower_id",
+  					foreign_key: "followed_id",
   					dependent: :destroy
   has_many :following, through: :active_friends, source: :followed
   has_many :followers, through: :passive_friends, source: :follower
   has_many :messages
-  has_many :keys
+
 
   def follow(other_user)
   	active_friends.create(followed_id: other_user.id)

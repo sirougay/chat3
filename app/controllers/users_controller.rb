@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
+    @friend = Friend.where(follower_id: current_user.id, followed_id: @user.id).or(Friend.where(follower_id: @user.id, followed_id: current_user.id)).first
+    @room = Room.new(friend_id: @friend.id)
   end
 
   def index

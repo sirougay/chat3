@@ -10,22 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170413114955) do
+ActiveRecord::Schema.define(version: 20170415020042) do
 
   create_table "friends", force: :cascade do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-  end
-
-  create_table "keys", force: :cascade do |t|
-    t.integer  "room_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["room_id"], name: "index_keys_on_room_id"
-    t.index ["user_id"], name: "index_keys_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -39,6 +30,7 @@ ActiveRecord::Schema.define(version: 20170413114955) do
   create_table "rooms", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "friend_id"
   end
 
   create_table "users", force: :cascade do |t|

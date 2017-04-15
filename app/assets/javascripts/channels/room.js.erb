@@ -5,8 +5,8 @@ $(document).on('turbolinks:load', function() {
 <% Room.all.each do |room| %>
   App['room' + <%=room.id%>] = App.cable.subscriptions.create({channel: 'RoomChannel', room: <%=room.id%>}, {  
   received: function(data) {
-   $("[data-chatroom='" + this.roomid + "']").removeClass('hidden')
-    return $("[data-chatroom='" + this.roomid + "']").append(data.message);
+    $("[data-chatroom='" + this.roomid + "']").removeClass('hidden')
+      return $("[data-chatroom='" + this.roomid + "']").append(data.message);
   },
 
   setRoomid: function(roomid) {

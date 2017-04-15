@@ -1,4 +1,4 @@
 class Room < ApplicationRecord
 	has_many :messages, dependent: :destroy
-	has_many :keys, dependent: :destroy
+	belongs_to :friend
 end
