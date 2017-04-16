@@ -1,0 +1,4 @@
+<%= form_for([@room, @room_member]) do |f| %>
+	<%= f.collection_check_boxes(:user_id, current_user.following, :id, :name) %>
+	<%= f.submit "招待" %>
+<% end %>

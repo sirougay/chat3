@@ -25,6 +25,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def search
+    user = User.where(line_id: params[:line_id]).first
+    if user != nil
+      redirect_to user_path(user.id)
+    else
+      redirect_to users_path, notice: "入力したIDのユーザーは存在しません。"
+    end
+  end
+
   private
     def user_params
       params.require(:user).permit(:name, :line_id)

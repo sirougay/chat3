@@ -1,20 +1,9 @@
-<div class="stats">
-  <a href="<%= following_user_path(current_user) %>">
-    <strong id="following" class="stat">
-      <%= current_user.following.count %>
-    </strong>
-    following
-  </a>
-  <a href="<%= followers_user_path(current_user) %>">
-    <strong id="followers" class="stat">
-      <%= current_user.followers.count %>
-    </strong>
-    followers
-  </a>
-</div>
 <div>
-  <% @users.each do |user| %>
-    <%= link_to user.name, user %>
+  <!-- 友人をIDで探す -->
+  <%= form_tag search_path do %>
+    <label>LineIDで友達を探す</label>
+    <%= text_field_tag :line_id%>
+    <%= submit_tag '検索' %>
   <% end %>
 </div>
 
@@ -27,6 +16,19 @@
 
     <%= f.submit %>
 
+  <% end %>
+</div>
+
+<div class="stats">
+  友達
+  <strong id="following" class="stat">
+    <%= current_user.following.count %>
+  </strong>
+</div>
+
+<div>
+  <% @users.each do |user| %>
+    <%= link_to user.name, user %>
   <% end %>
 </div>
 
