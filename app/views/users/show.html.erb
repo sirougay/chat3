@@ -1,14 +1,17 @@
-
+<% if current_user.id == @user.id %>
+  <p>ここはあなた自身のページです。自分自身を追加することはできません。</p>
+<% else %>
   <div id="follow_form">
   <% if current_user.following?(@user) %>
     <%= "ブロック、トーク" %>
-    <%= form_for @room do |f| %>
-  		<div><%= f.hidden_field :friend_id%></div>
-  		<%= f.submit "トーク", class: "btn btn-primary" %>
-		<% end %>
+    <%= form_tag rooms_path do  %>
+  		<div><%= hidden_field_tag :user_id, @user.id%></div>
+  		<%= submit_tag "トーク", class: "btn btn-primary" %>
+  	<% end %>
   <% else %>
     <%= render 'follow' %>
   <% end %>
   </div>
+<% end %>
 
 

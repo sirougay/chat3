@@ -1,0 +1,10 @@
+<h1>トーク</h1>
+<% @rooms.each do |room| %>
+	<%= link_to room_path(room.id) do %>
+		<% room.users.each do |user| %>
+			<% if user.id != current_user.id%>
+				<%= user.name %>
+			<% end %>
+		<% end %>
+	<% end %><br>
+<% end %>

@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :following, through: :active_friends, source: :followed
   has_many :followers, through: :passive_friends, source: :follower
   has_many :messages
+  has_many :room_members
+  has_many :rooms, through: :room_members
 
 
   def follow(other_user)
