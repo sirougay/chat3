@@ -9,16 +9,16 @@
   </head>
 
   <body>
-  	<p class="notice"><%= notice %></p>
-  	<p class="alert"><%= alert %></p>
     <% if user_signed_in? %>
-      Logged in as <%= current_user.name %>
+      <%= current_user.name %>　としてログインしています。
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
       <%= link_to "プロフィール編集", edit_user_path(current_user) %>
     <% else %>
       <%= link_to "サインアップ", new_user_registration_path %> |
       <%= link_to "ログイン", new_user_session_path %>
-    <% end %>
+    <% end %><br>
+    <%= link_to "友達", users_path %>
+    <%= link_to "トークルーム", rooms_path %>
     <%= yield %>
 
   </body>

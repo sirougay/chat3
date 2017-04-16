@@ -7,7 +7,7 @@
 <%= link_to "招待", new_room_room_member_path(params[:id]) %>
 
 <div class="panel panel-default">
-  <div class="panel-body" id="messages" data-behavior="messages" data-room= '<%= @room.id%>'>
+  <div class="panel-body" id="messages" data-room= '<%= @room.id%>'>
     <%= render partial: 'messages/message', collection: @room.messages%>
   </div>
 </div>

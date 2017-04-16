@@ -13,13 +13,4 @@ class RoomMembersController < ApplicationController
 		end
     redirect_to root_path
 	end
-
-	# private
-	# 	def room_member_params
-	# 		params.permit([:room_member][:user_id])
-	# 	end
-
-		# Parameters: {"room_member"=>{"user_id"=>["", "5"]}, "commit"=>"招待", "room_id"=>"33"}
-		# room_member: [user_id: :5]
-		# <input type="hidden" name="room_member[user_id][]" value="">
 end

@@ -1,11 +1,13 @@
-<div>
+
   <!-- 友人をIDで探す -->
   <%= form_tag search_path do %>
+  <div class= "form-group">
     <label>LineIDで友達を探す</label>
+  </div>
     <%= text_field_tag :line_id%>
     <%= submit_tag '検索' %>
   <% end %>
-</div>
+
 
 <div>
   <!-- 友人から探す -->
