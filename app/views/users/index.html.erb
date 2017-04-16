@@ -1,37 +1,35 @@
-
-  <!-- 友人をIDで探す -->
-  <%= form_tag search_path do %>
+<!-- 友達をIDで探す -->
+<%= form_tag search_path do %>
   <div class= "form-group">
     <label>LineIDで友達を探す</label>
-  </div>
     <%= text_field_tag :line_id%>
     <%= submit_tag '検索' %>
-  <% end %>
+  </div>
+<% end %>
 
-
-<div>
-  <!-- 友人から探す -->
+  <!-- 友達から探す -->
+<% if @users.count > 0 %>
   <%= search_form_for @q do |f| %>
-
-    <%= f.label :name_cont %>
-    <%= f.search_field :name_cont %>
-
-    <%= f.submit %>
-
+    <div class= "form-group">
+      <%= f.label :友達の名前 %>
+      <%= f.search_field :name_cont %>
+      <%= f.submit %>
+    </div>
   <% end %>
-</div>
-
-<div class="stats">
-  友達
-  <strong id="following" class="stat">
-    <%= current_user.following.count %>
-  </strong>
-</div>
+<% else %>
+  まずはID検索で友達を追加しよう！
+<% end %>
 
 <div>
-  <% @users.each do |user| %>
-    <%= link_to user.name, user %>
-  <% end %>
+  <p>
+    友達 ( <%= current_user.following.count %> )
+  </p>
 </div>
+
+<% @users.each do |user| %>
+  <div class = "list-group">
+    <button type="button" class="list-group-item"><%= link_to user.name, user %></button>
+  </div>
+<% end %>
 
 

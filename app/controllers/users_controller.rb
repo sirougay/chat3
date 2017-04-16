@@ -1,15 +1,18 @@
 class UsersController < ApplicationController
   def show
+    if request.referer == nil
+      redirect_to users_path, alert: "無効なアクセスです。友達はID検索を用いてお探しください。"
+    end
   	@user = User.find(params[:id])
     if @friend = Friend.where(follower_id: current_user.id, followed_id: @user.id).or(Friend.where(follower_id: @user.id, followed_id: current_user.id)).first
     end
   end
 
   def index
-  	@users = User.where.not(id: current_user.id)
+  	@users = current_user.following
     #友人をサーチする
-    @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true)
+     @q = current_user.following.ransack(params[:q])
+     @users = @q.result(distinct: true)
   end
 
   def edit
@@ -19,7 +22,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to user_path(@user.id)
+      redirect_to edit_user_path(@user.id), notice: "変更が保存されました。"
     else
       render :action => "edit" 
     end

@@ -1,10 +1,14 @@
 <h1>トーク</h1>
 <% @rooms.each do |room| %>
-	<%= link_to room_path(room.id) do %>
-		<% room.users.each do |user| %>
-			<% if user.id != current_user.id%>
-				<%= user.name %>
+	<div class = "list-group">
+    <button type="button" class="list-group-item">
+    	<%= link_to room_path(room.id) do %>
+				<% room.users.each do |user| %>
+					<% if user.id != current_user.id%>
+						<%= user.name %>
+					<% end %>
+				<% end %>
 			<% end %>
-		<% end %>
-	<% end %><br>
+		</button>	
+  </div>
 <% end %>

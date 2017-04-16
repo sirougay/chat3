@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :messages
   has_many :room_members
   has_many :rooms, through: :room_members
+  validates :name, presence: true
+  validates :line_id, uniqueness: true
 
 
   def follow(other_user)
