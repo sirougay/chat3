@@ -37,7 +37,6 @@ gem 'bootstrap-sass'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
-ruby '2.3.4'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
