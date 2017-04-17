@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :messages
   has_many :room_members
   has_many :rooms, through: :room_members
+  mount_uploader :picture, PictureUploader
   validates :name, presence: true
   validates :line_id, uniqueness: true
 

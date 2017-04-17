@@ -36,7 +36,9 @@ gem 'devise'
 gem 'ransack'
 gem 'execjs'
 gem 'bootstrap-sass'
-gem 'bootstrap_form'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
