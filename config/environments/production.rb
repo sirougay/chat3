@@ -85,5 +85,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.web_socket_server_url = "wss://enigmatic-dawn-87388.herokuapp.com/cable" 
-  config.action_cable.allowed_request_origins = ['https://enigmatic-dawn-87388.herokuapp.com', 'https://enigmatic-dawn-87388.herokuapp.com']
+  config.action_cable.allowed_request_origins = [ /https?:\/\/.*/ ]
 end
