@@ -5,10 +5,16 @@ App.room = App.cable.subscriptions.create "RoomChannel",
   send_message: (room_id, message) ->
     @perform "send_message", {room_id: room_id, content: message}
 
-  $(document).on 'keypress', (event) ->
+  input_message = () ->
+    message = $('#message-content').val()
+    room_id = $('[data-room]').data().room
+    App.room.send_message(room_id, message)
+    $('#message-content').val ''
+    return false
+
+  $(document).on 'keypress', '#message-content', (event) ->
     if event.keyCode is 13
-      message = event.target.value
-      room_id = $('[data-room]').data().room
-      App.room.send_message(room_id, message)
-      $('[data-input="message"]').val ''
-      return false
+      input_message()
+
+  $(document).on 'click','#submit-message', () ->
+    input_message()
