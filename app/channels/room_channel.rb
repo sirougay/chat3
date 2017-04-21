@@ -12,6 +12,8 @@ class RoomChannel < ApplicationCable::Channel
   end
 
   def send_message(data)
-    Message.create!(user: current_user, content: data["content"], room_id: data["room_id"])
+    user = current_user
+    message = Message.create!(content: data["content"], room_id: data["room_id"], user_id: data["speaker_id"])
+    MessageBroadcastJob.perform_later(message, user)
   end
 end

@@ -10,7 +10,13 @@
 
 <div class="panel panel-default">
   <div class="panel-body" id="messages" data-room= '<%= @room.id%>'>
-    <%= render partial: 'messages/message', collection: @room.messages%>
+  	<% @room.messages.each do |message| %>
+  		<% if message.user == current_user %>
+  			<%= render partial: 'messages/current_user_message', locals: { message: message} %>
+  		<% else %>
+  			<%= render partial: 'messages/other_users_message' , locals: { message: message}%>
+  		<% end %>
+  	<% end %>
   </div>
 </div>
 

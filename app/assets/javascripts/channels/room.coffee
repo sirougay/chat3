@@ -2,13 +2,14 @@ App.room = App.cable.subscriptions.create "RoomChannel",
   received: (data) ->
     $("[data-room = '#{data.room_id}']").append data["message"]
 
-  send_message: (room_id, message) ->
-    @perform "send_message", {room_id: room_id, content: message}
+  send_message: (content, room_id, speaker_id) ->
+    @perform "send_message", {room_id: room_id, content: content, speaker_id: speaker_id}
 
   input_message = () ->
-    message = $('#message-content').val()
+    content = $('#message-content').val()
     room_id = $('[data-room]').data().room
-    App.room.send_message(room_id, message)
+    speaker_id = $('#message-content').data('speaker')
+    App.room.send_message(content, room_id, speaker_id)
     $('#message-content').val ''
     return false
 
