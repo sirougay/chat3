@@ -1,6 +1,9 @@
 App.room = App.cable.subscriptions.create "RoomChannel",
   received: (data) ->
-    $("[data-room = '#{data.room_id}']").append data["message"]
+    if data["user_id"] is $("[data-room = '#{data.room_id}']").data('user')
+      $("[data-room = '#{data.room_id}']").append data["my_message"]
+    else
+      $("[data-room = '#{data.room_id}']").append data["other_message"]
 
   send_message: (content, room_id, speaker_id) ->
     @perform "send_message", {room_id: room_id, content: content, speaker_id: speaker_id}

@@ -9,7 +9,7 @@
 </div>
 
 <div class="panel panel-default">
-  <div class="panel-body" id="messages" data-room= '<%= @room.id%>'>
+  <div class="panel-body" id="messages" data-room= '<%= @room.id%>' data-user='<%= current_user.id%>'>
   	<% @room.messages.each do |message| %>
   		<% if message.user == current_user %>
   			<%= render partial: 'messages/current_user_message', locals: { message: message} %>
