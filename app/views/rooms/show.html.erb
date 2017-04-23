@@ -8,8 +8,7 @@
 	<%= link_to "招待する", new_room_room_member_path(params[:id]) %>
 </div>
 
-<div class="panel panel-default">
-  <div class="panel-body" id="messages" data-room= '<%= @room.id%>' data-user='<%= current_user.id%>'>
+  <div class="kaiwa" id="messages" data-room= '<%= @room.id%>' data-user='<%= current_user.id%>'>
   	<% @room.messages.each do |message| %>
   		<% if message.user == current_user %>
   			<%= render partial: 'messages/current_user_message', locals: { message: message} %>
@@ -18,6 +17,5 @@
   		<% end %>
   	<% end %>
   </div>
-</div>
 
 <%= render partial: 'messages/message_form', locals: {message: @message, room: @room}%>

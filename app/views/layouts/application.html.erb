@@ -13,10 +13,10 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
       <%= current_user.name %>　としてログインしています。
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      <%= link_to "ログアウト", destroy_user_session_path, :method => :delete %>
       <%= link_to "プロフィール編集", edit_user_path(current_user) %>
     <% else %>
-      <%= link_to "サインアップ", new_user_registration_path %> |
+      <%= link_to "サインアップ", new_user_registration_path %>
       <%= link_to "ログイン", new_user_session_path %>
     <% end %><br>
     <%= link_to "友達", users_path, {:class=>"glyphicon glyphicon-user"}%>

@@ -1,8 +1,15 @@
-<div>
-<p class="right-message">
-	<strong>
-		<%= message.user.name %>:
-	</strong>
-	<%= message.content %>
-</p>
-</div>
+<figure class="kaiwa-img-right">
+	<% if message.user.picture? %>
+		<%= image_tag message.user.picture.url %>
+	<% else %>
+		<%= image_tag ("default.gif") %>
+	<% end %>
+	<figcaption class="kaiwa-img-description">
+		<%= message.user.name %>
+	</figcaption>
+</figure>
+<div class="kaiwa-text-left">
+	<p class="kaiwa-text">
+		<%= message.content %>
+	</p>
+</div><br><br>

@@ -26,6 +26,8 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <%= f.hidden_field :picture, :value => "/assets/images/default.gif" %>
+
   <div class="actions">
     <%= f.submit "新規登録" %>
   </div>
