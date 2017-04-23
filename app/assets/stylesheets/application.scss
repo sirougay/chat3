@@ -37,6 +37,7 @@
 }
 /* 左からの吹き出しテキスト */
 .kaiwa-text-right {
+  display: block;
   position: relative;
   margin-left: 80px;
   padding: 10px;
@@ -45,6 +46,7 @@
 }
 /* 右からの吹き出しテキスト */
 .kaiwa-text-left {
+  display: block;
   position: relative;
   margin-right: 80px;
   padding: 10px;
@@ -98,5 +100,4 @@ p.kaiwa-text:last-child {
   content: "";
   display: block;
 }
-
 

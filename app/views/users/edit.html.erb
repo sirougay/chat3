@@ -1,6 +1,7 @@
 <h2><%= @user.email %></h2>
 <%= image_tag @user.picture.url if @user.picture? %>
 
+
 <div class="form-group">
   <%= form_for (@user) do |f| %>
   	
