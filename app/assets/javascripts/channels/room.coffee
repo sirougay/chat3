@@ -19,7 +19,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
     $('#message-content').val ''
     return false
 
-  read_message: (message_id, reader_id) ->
+  read_message = (message_id, reader_id) ->
     @perform "read_message", {message_id: message_id, reader_id: reader_id}
 
   $(document).on 'keypress', '#message-content', (event) ->
