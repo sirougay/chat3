@@ -10,6 +10,9 @@
 </figure>
 <div class="kaiwa-text-left">
 	<p class="kaiwa-text">
+		<% if message.reads.count > 0 %>
+			既読
+		<% end %>
 		<%= message.content %>
 	</p>
 </div><br><br>
