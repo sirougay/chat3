@@ -6,8 +6,8 @@ App.read = App.cable.subscriptions.create "ReadChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-  	$("[data-room = '#{data.room_id}']").append data["既読"]
+  	$("[data-read-flg = '#{data.message_id}']").prepend("既読")
     # Called when there's incoming data on the websocket for this channel
 
-  send_read: ->
-    @perform 'send_read'
+  send_read: (message_id)->
+    @perform 'send_read', {message_id: message_id}
