@@ -5,7 +5,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
       $("[data-room = '#{data.room_id}']").append data["my_message"]
     else
       $("[data-room = '#{data.room_id}']").append data["other_message"]
-      App.room.read_message(data["message_id"], current_user_id)
+      read_message(data["message_id"], current_user_id)
       App.read.send_read()
 
   send_message: (content, room_id, speaker_id) ->
@@ -19,7 +19,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
     $('#message-content').val ''
     return false
 
-  read_message: (message_id, reader_id) ->
+  read_message = (message_id, reader_id) ->
     @perform "read_message", {message_id: message_id, reader_id: reader_id}
 
 
