@@ -1,13 +1,12 @@
 App.room = App.cable.subscriptions.create "RoomChannel",
   received: (data) ->
-    #今画面を見ている人がメッセージ投稿者であるかどうか
     current_user_id = $("[data-room = '#{data.room_id}']").data('user')
     if data["user_id"] is current_user_id
       $("[data-room = '#{data.room_id}']").append data["my_message"]
     else
-      #既読をつける
+      $("[data-room = '#{data.room_id}']").append data["other_message"]
       App.room.read_message(data["message_id"], current_user_id)
-      $("[data-room = '#{data.room_id}']").append(data["other_message"])
+      App.read.send_read
 
   send_message: (content, room_id, speaker_id) ->
     @perform "send_message", {room_id: room_id, content: content, speaker_id: speaker_id}
