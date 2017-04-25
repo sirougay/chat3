@@ -15,7 +15,4 @@ class RoomChannel < ApplicationCable::Channel
     Message.create!(content: data["content"], room_id: data["room_id"], user_id: data["speaker_id"])
   end
 
-  def read_message(data)
-    Read.create!(message_id: data["message_id"], reader_id: data["reader_id"])
-  end
 end

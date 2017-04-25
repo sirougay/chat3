@@ -6,14 +6,10 @@ App.room = App.cable.subscriptions.create "RoomChannel",
       $("[data-room = '#{data.room_id}']").append data["my_message"]
     else
       $("[data-room = '#{data.room_id}']").append data["other_message"]
-      App.room.read_message(message_id, current_user_id)
-      App.read.send_read(message_id)
+      App.read.read_message(message_id, current_user_id)
 
   send_message: (content, room_id, speaker_id) ->
     @perform "send_message", {room_id: room_id, content: content, speaker_id: speaker_id}
-
-  read_message: (message_id, reader_id) ->
-    @perform "read_message", {message_id: message_id, reader_id: reader_id}
 
   input_message = () ->
     content = $('#message-content').val()
@@ -29,3 +25,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
 
   $(document).on 'click','#submit-message', () ->
     input_message()
+
+  $(window).load () ->
+    room_id = $('[data-room]').data().room
+    App.read.read_messages(room_id)

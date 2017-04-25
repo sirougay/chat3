@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :messages
   has_many :room_members
   has_many :rooms, through: :room_members
+  has_many :reads, class_name: "Read",
+            foreign_key: "reader_id"
   mount_uploader :picture, ::PictureUploader
   validates :name, presence: true
 

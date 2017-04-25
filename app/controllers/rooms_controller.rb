@@ -5,12 +5,6 @@ class RoomsController < ApplicationController
       redirect_to root_path, notice: "招待されなければ入室できません。"
     end
   	@message = Message.new
-    #既読をつける
-    @room.messages.each do |message|
-      if current_user != message.user
-        message.reads.where(reader_id: current_user.id).first_or_create
-      end
-    end
   end
 
   def index
