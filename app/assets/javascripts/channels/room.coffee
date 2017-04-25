@@ -29,3 +29,8 @@ App.room = App.cable.subscriptions.create "RoomChannel",
   $(window).load () ->
     room_id = $('[data-room]').data().room
     App.read.read_messages(room_id)
+
+  $(document).on 'keypress', (event) ->
+    if event.keyCode is 13
+      room_id = $('[data-room]').data().room
+      App.read.read_messages(room_id)
