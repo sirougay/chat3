@@ -15,7 +15,7 @@ class ReadChannel < ApplicationCable::Channel
   def read_messages(data)
     room = Room.find(data["room_id"])
     room.messages.each do |message|
-      if current_user.id == message.user_id
+      if current_user.id != message.user_id
       	unless message.reads.exists?(reader_id: current_user.id)
         	read = message.reads.create(reader_id: current_user.id)
         	ActionCable.server.broadcast "read_channel", {message_id: read.message_id}
