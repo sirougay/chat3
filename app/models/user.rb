@@ -16,7 +16,6 @@ class User < ApplicationRecord
   has_many :rooms, through: :room_members
   mount_uploader :picture, ::PictureUploader
   validates :name, presence: true
-  validates :picture, presence: true
 
 
   def follow(other_user)
